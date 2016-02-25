@@ -16,7 +16,7 @@ Space: O(1)
 若允许重复元素, 则33题中nums[first] <= nums[mid]时, [1,m]是递增序列不能成立, 如[1,3,1,1,1].
 因此将nums[first] <= nums[mid]拆分成两个条件:
     nums[first] < nums[mid]时, [1,m]一定为递增序列
-    nums[first] = nums[mid]时, first++, 看之后的情况
+    nums[first] = nums[mid]时, 无法确定, 因此first++往下看一步
 '''
 
 
