@@ -11,6 +11,8 @@ Description:
     It doesn't matter what you leave beyond the new length.
 
 Tags: Array, Two Pointers
+Time: O(n)
+Space: O(1)
 '''
 
 class Solution(object):
@@ -22,14 +24,14 @@ class Solution(object):
         if not nums:
             return 0
 
-        last, i = 0, 1
+        index, i = 0, 1
         while i < len(nums):
-            if nums[last] != nums[i]:
-                last += 1
-                nums[last] = nums[i]
+            if nums[index] != nums[i]:
+                index += 1
+                nums[index] = nums[i]
             i += 1
 
-        return last + 1
+        return index + 1
 
 if __name__ == '__main__':
     print Solution().removeDuplicates([1,1,2])
