@@ -27,6 +27,7 @@ Tags: Array, Hash Table, Two Pointers
 import collections
 
 class Solution(object):
+    # Time: O(n^2~n^4) ; Space: O(n^2)
     def fourSum(self, nums, target):
         """
         :type nums: List[int]
@@ -59,6 +60,40 @@ class Solution(object):
 
         return result
 
+
+    # Time: O(n^3) ; Space: O(1)
+    def fourSum2(self, nums, target):
+        if len(nums) < 4:
+            return []
+
+        nums = sorted(nums)
+        result = []
+        a = 0
+
+        while a < len(nums)-3:
+            b = a + 1
+            while b < len(nums)-2:
+                c, d = b+1, len(nums)-1
+                while c < d:
+                    if nums[a] + nums[b] + nums[c] + nums[d] < target:
+                        c += 1
+                    elif nums[a] + nums[b] + nums[c] + nums[d] > target:
+                        d -= 1
+                    else:
+                        result.append([nums[a], nums[b], nums[c], nums[d]])
+                        c += 1
+                        d -= 1
+                        while c < d and nums[c] == nums[c-1]:
+                            c += 1
+                        while c < d and nums[d] == nums[d+1]:
+                            d -= 1
+                b +=1
+            a += 1
+        return result
+
+
 if __name__ == '__main__':
     print Solution().fourSum([1, 0, -1, 0, -2, 2], 0)
+    print Solution().fourSum2([1, 0, -1, 0, -2, 2], 0)
+
 
