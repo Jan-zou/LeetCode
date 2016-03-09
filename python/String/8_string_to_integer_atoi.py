@@ -28,7 +28,7 @@ class Solution(object):
         :type str: str
         :rtype: int
         """
-        INT_MAX = 2147483647
+        INT_MAX = 2147483647    # 2^31 - 1
         INT_MIN = -2147483648
         result = 0
 
@@ -36,9 +36,10 @@ class Solution(object):
             return result
 
         i = 0
+        # 空格
         while i < len(str) and str[i] == ' ':
             i += 1
-
+        # 正负号
         sign = 1
         if str[i] == '-':
             sign = -1
@@ -54,19 +55,28 @@ class Solution(object):
                 else:
                     return INT_MIN
 
-            result = result * 10 + ord(str[i]) - ord('0')
+            result = result * 10 + ord(str[i]) - ord('0')    # ord(str)->ASCII  chr(ASCII) ->str
             i += 1
 
         return sign * result
 
 
 if __name__ == '__main__':
-    print Solution().myAtoi("")
+
     print Solution().myAtoi("0")
     print Solution().myAtoi("1")
     print Solution().myAtoi("-123")
     print Solution().myAtoi("123")
     print Solution().myAtoi("2147483647")
-    print Solution().myAtoi("2147483648")
     print Solution().myAtoi("-2147483648")
+    # 不规则有效输入
+    print Solution().myAtoi("+43")
+    print Solution().myAtoi("-3924x8fc")
+    # 溢出
+    print Solution().myAtoi("2147483648")
     print Solution().myAtoi("-2147483649")
+    # 无效输入
+    print Solution().myAtoi("")
+    print Solution().myAtoi("++c")
+    print Solution().myAtoi("++1")
+
