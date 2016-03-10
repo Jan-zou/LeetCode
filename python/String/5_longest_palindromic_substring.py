@@ -26,22 +26,28 @@ class Solution(object):
         j>i+1, P(i,j)= (s[i]==s[j]) and P(i+1, j-1)
     '''
     def longestPalindrome(self, s):
+        import numpy
         if len(s) <= 1:
             return s
 
-        dp = []
         start, max_len = 0, 0
-        k = 2
-        while k < len(s):
-            for i in xrange(len(s)-k+1):
-                j = 0
+        n = len(s)
+        dp = numpy.zeros((n, n))
 
+        for i in xrange(n):    # 长度为1，全是回文
+            dp[i][i] = 1
+        for i in xrange(n-1):  # 长度为2，相等是回文
+            if s[i] == s[i+1]:
+                dp[i][i+1] = 1
+                max_len = 2
+                start = i
+        for k in xrange(3, n):
+            for i in xrange(n-k):
+                j = i + k - 1
                 if s[i]==s[j] and dp[i+1][j-1]:
-                    dp[i][j] = True
+                    dp[i][j] = 1
                     start = i
-                    max_len = j
-            k += 1
-
+                    max_len = k
         return s[start:max_len+1]
 
 
@@ -79,6 +85,8 @@ class Solution(object):
     '''
     Manacher算法
     http://articles.leetcode.com/longest-palindromic-substring-part-ii
+    使用center, right两个参数配合在每次循环中直接对P[i]快速赋值,
+    在计算以i为中心的回文子串中，不必每次都从1开始比较，减少了比较次数。
     '''
     def longestPalindrome3(self, s):
         # Transform S into T.
@@ -128,4 +136,6 @@ class Solution(object):
 
 
 if __name__ == '__main__':
-    print Solution().longestPalindrome3('abb')
+    print Solution().longestPalindrome('babcbabcbaccba')
+    print Solution().longestPalindrome2('babcbabcbaccba')
+    print Solution().longestPalindrome3('babcbabcbaccba')

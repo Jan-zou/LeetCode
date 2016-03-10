@@ -7,6 +7,8 @@ Description:
     The brackets must close in the correct order, "()" and "()[]{}" are all valid but "(]" and "([)]" are not.
 
 Tags: Stack, String
+Time: O(n)
+Space: O(n)
 '''
 
 class Solution(object):
