@@ -87,6 +87,9 @@ class Solution(object):
     http://articles.leetcode.com/longest-palindromic-substring-part-ii
     使用center, right两个参数配合在每次循环中直接对P[i]快速赋值,
     在计算以i为中心的回文子串中，不必每次都从1开始比较，减少了比较次数。
+    时间复杂度分析:
+        尽管代码里面有两层循环，通过amortized analysis我们可以得出，Manacher的时间复杂度是线性的。
+        由于内层的循环只对尚未匹配的部分进行，因此对于每一个字符而言，只会进行一次，因此时间复杂度是O(n)。
     '''
     def longestPalindrome3(self, s):
         # Transform S into T.

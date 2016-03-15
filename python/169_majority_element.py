@@ -1,3 +1,6 @@
+# !/usr/bin/env python
+# coding: utf-8
+
 '''
 Description:
     Given an array of size n, find the majority element.
@@ -5,11 +8,9 @@ Description:
     You may assume that the array is non-empty and the majority element always exist in the array.
 
 Tags: Divide and Conquer, Array, Bit Manipulation
-
-成对消除
-
 Time:  O(n)
 Space: O(1)
+成对消除
 '''
 
 class Solution(object):
