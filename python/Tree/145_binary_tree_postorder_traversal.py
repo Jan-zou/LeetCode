@@ -3,7 +3,7 @@
 
 '''
 Description:
-    Given a binary tree, return the preorder traversal of its nodes' values.
+    Given a binary tree, return the postorder traversal of its nodes' values.
     For example:
         Given binary tree {1,#,2,3},
            1
@@ -11,7 +11,7 @@ Description:
              2
             /
            3
-        return [1,2,3].
+        return [3,2,1].
 Note: Recursive solution is trivial, could you do it iteratively?
 
 Tags: Tree, Stack
@@ -25,21 +25,24 @@ Tags: Tree, Stack
 #         self.right = None
 
 class Solution(object):
-    def preorderTraversal(self, root):
+    def postorderTraversal(self, root):
         """
         :type root: TreeNode
         :rtype: List[int]
         """
         result = []
         stack = []
-        current = root
+        current, last = root, None
 
         while stack or current:
             if current:
-                result.append(current.val)
                 stack.append(current)
                 current = current.left
             else:
-                current = stack.pop()
-                current = current.right
+                parent = stack[-1]
+                if parent.right in (None, last):
+                    result.append(parent.val)
+                    last = stack.pop()
+                current = parent.right
         return result
+

@@ -3,7 +3,7 @@
 
 '''
 Description:
-    Given a binary tree, return the preorder traversal of its nodes' values.
+    Given a binary tree, return the inorder traversal of its nodes' values.
     For example:
         Given binary tree {1,#,2,3},
            1
@@ -11,10 +11,10 @@ Description:
              2
             /
            3
-        return [1,2,3].
+        return [1,3,2].
 Note: Recursive solution is trivial, could you do it iteratively?
 
-Tags: Tree, Stack
+Tags: Tree, Hash Table, Stack
 '''
 
 # Definition for a binary tree node.
@@ -25,7 +25,7 @@ Tags: Tree, Stack
 #         self.right = None
 
 class Solution(object):
-    def preorderTraversal(self, root):
+    def inorderTraversal(self, root):
         """
         :type root: TreeNode
         :rtype: List[int]
@@ -36,10 +36,10 @@ class Solution(object):
 
         while stack or current:
             if current:
-                result.append(current.val)
-                stack.append(current)
+                stack.apend(current)
                 current = current.left
-            else:
+            else:    # not have left
                 current = stack.pop()
+                result.append(current.val)
                 current = current.right
         return result
