@@ -43,6 +43,7 @@ class Solution(object):
                 if parent.right in (None, last):
                     result.append(parent.val)
                     last = stack.pop()
-                current = parent.right
+                else:
+                    current = parent.right
         return result
 

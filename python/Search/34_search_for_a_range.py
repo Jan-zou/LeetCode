@@ -12,6 +12,8 @@ Description:
     return [3, 4].
 
 Tags: Array, Binary Search
+Time: O(logn)
+Space: O(1)
 '''
 
 
@@ -29,12 +31,15 @@ class Solution(object):
         return [left, right-1]
 
     def binarySearch(self, compare, nums, target):
-        start, end = 0, len(nums) -1
+        start, end = 0, len(nums)
         while start < end:
-            mid = (start + end) // 2
+            mid = start + (end - start) // 2
             if compare(target,nums[mid]):
-                end = mid - 1
+                end = mid
             else:
                 start = mid + 1
         return start
 
+
+if __name__ == '__main__':
+    print Solution().searchRange([5, 7, 7, 8, 8, 10], 8)
