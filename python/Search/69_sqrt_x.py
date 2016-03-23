@@ -25,9 +25,7 @@ class Solution(object):
                 high = mid - 1
             else:
                 low = mid + 1
-        return high
+        return high    # high<low
 
 if __name__ == '__main__':
-    print Solution().sqrt(10)
-
-
+    print Solution().mySqrt(10)
