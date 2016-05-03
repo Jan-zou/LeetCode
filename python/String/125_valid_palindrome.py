@@ -14,12 +14,11 @@ Note:
     For the purpose of this problem, we define empty string as valid palindrome.
 
 Tags: Two Pointers, String
-Time: O(n)
-Space: O(1)
 '''
 
 
 class Solution(object):
+    # O(n)runtime, O(1)space
     def isPalindrome(self, s):
         """
         :type s: str
