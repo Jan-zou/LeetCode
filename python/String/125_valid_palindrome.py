@@ -38,5 +38,7 @@ class Solution(object):
 
 
 if __name__ == '__main__':
-    print Solution().isPalindrome('A man, a plan, a canal: Panama')
-    print Solution().isPalindrome('race a car')
+    print Solution().isPalindrome('A man, a plan, a canal: Panama')    # true
+    print Solution().isPalindrome('race a car')    # false
+    print Solution().isPalindrome('s')    # true
+    print Solution().isPalindrome('')    # true
