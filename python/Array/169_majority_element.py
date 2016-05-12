@@ -7,7 +7,7 @@ Description:
     The majority element is the element that appears more than ⌊ n/2 ⌋ times.
     You may assume that the array is non-empty and the majority element always exist in the array.
 
-Tags: Divide and Conquer, Array, Bit Manipulation
+Tags: Array, Divide and Conquer, Bit Manipulation
 Time:  O(n)
 Space: O(1)
 成对消除
