@@ -16,12 +16,13 @@ Tags: Array, Hash Table
 class Solution:
     # @return a tuple, (index1, index2)
     # Hash table; O(n)runtime, O(n)space
-    def twoSum(self, num, target):
+    def twoSum(self, nums, target):
         searchdict = {}
-        for i, w in enumerate(num):
+        for i, w in enumerate(nums):
             if target - w in searchdict:
                 return (searchdict[target-w] + 1, i + 1)
             searchdict[w] = i
+        return False
 
     # if numbers is sorted, binary search; O(nlogn)runtime, O(1)space
     def two_sum_sorted(self, nums, target):
@@ -29,6 +30,7 @@ class Solution:
             j = self.binary_search(nums, target-w, i+1)
             if j != -1:
                 return (i+1, j+1)
+        return False
 
     def binary_search(self, nums, target, left):
         start = left
@@ -40,7 +42,7 @@ class Solution:
             elif nums[mid] < target:
                 start = mid + 1
             else:
-                end = mid -1
+                end = mid - 1
         return -1
 
     # if numbers is sorted, two points; O(n)runtime, O(1)space
@@ -54,6 +56,26 @@ class Solution:
                 j -= 1
             else:
                 i += 1
+        return False
+
+
+# Data Structure Design
+class TwoSum:
+    def __init__(self):
+        self.nums = []
+        self.target = 0
+
+    def add(self, input):
+        self.nums.append(input)
+
+    def find(self, value):
+        self.target = value
+        searchdict = {}
+        for i, w in enumerate(self.nums):
+            if self.target - w in searchdict:
+                return True
+            searchdict[w] = i
+        return False
 
 
 if __name__ == '__main__':

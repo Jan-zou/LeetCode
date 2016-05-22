@@ -18,8 +18,8 @@ Description:
     If no valid conversion could be performed, a zero value is returned. If the correct value is out of the range of representable values, INT_MAX (2147483647) or INT_MIN (-2147483648) is returned.
 
 Tags: Math, String
-Time: O(n)
-Space: O(1)
+
+Time: O(n), Space: O(1)
 '''
 
 class Solution(object):
@@ -70,13 +70,13 @@ if __name__ == '__main__':
     print Solution().myAtoi("2147483647")
     print Solution().myAtoi("-2147483648")
     # 不规则有效输入
-    print Solution().myAtoi("+43")
-    print Solution().myAtoi("-3924x8fc")
+    print Solution().myAtoi("+43")          # 43
+    print Solution().myAtoi("-3924x8fc")    # -3924
     # 溢出
-    print Solution().myAtoi("2147483648")
-    print Solution().myAtoi("-2147483649")
+    print Solution().myAtoi("2147483648")     # 2147483647
+    print Solution().myAtoi("-2147483649")    # -2147483648
     # 无效输入
-    print Solution().myAtoi("")
-    print Solution().myAtoi("++c")
-    print Solution().myAtoi("++1")
+    print Solution().myAtoi("")      # 0
+    print Solution().myAtoi("++c")   # 0
+    print Solution().myAtoi("++1")   # 0
 
