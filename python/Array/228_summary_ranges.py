@@ -7,6 +7,7 @@ Description:
     For example, given [0,1,2,4,5,7], return ["0->2","4->5","7"].
 
 Tags: Array
+Time: O(n); Space: O(1)
 '''
 
 
@@ -31,7 +32,6 @@ class Solution(object):
                 ranges.append(interval)
                 if i < len(nums):
                     start = end = nums[i]
-
         return ranges
 
 
