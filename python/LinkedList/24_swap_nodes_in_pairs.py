@@ -43,6 +43,7 @@ class Solution(object):
             current = next_one
         return dummy.next
 
+
 if __name__ == '__main__':
     head = ListNode(1)
     head.next, head.next.next, head.next.next.next = ListNode(2), ListNode(3), ListNode(4)
