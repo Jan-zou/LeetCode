@@ -19,6 +19,7 @@ Description:
             ]
 
 Tags: Tree, Breadth-first Search
+Time: O(n); Space: O(n)
 '''
 
 # Definition for a binary tree node.
@@ -47,8 +48,14 @@ class Solution(object):
                     next_level.append(node.left)
                 if node.right:
                     next_level.append(node.right)
-
             current = next_level
             result.insert(0, vals)
-
         return result
+
+if __name__ == "__main__":
+    root = TreeNode(3)
+    root.left = TreeNode(9)
+    root.right = TreeNode(20)
+    root.right.left = TreeNode(15)
+    root.right.right = TreeNode(7)
+    print Solution().levelOrderBottom(root)

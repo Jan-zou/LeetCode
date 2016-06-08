@@ -20,14 +20,15 @@ Description:
         ]
 
 Tags: Tree, Breadth-first Search, Stack
+Time: O(n); Space: O(n)
 '''
 
 # Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 class Solution(object):
     def zigzagLevelOrder(self, root):
@@ -38,7 +39,7 @@ class Solution(object):
         if root is None:
             return []
 
-        resutl = []
+        result = []
         current = [root]
         level = 1
         while current:
@@ -53,8 +54,17 @@ class Solution(object):
             if level % 2 == 1:
                 result.append(vals)
             else:
-                resutl.append(vals[::-1])
+                result.append(vals[::-1])
 
             current = next_level
             level += 1
         return result
+
+
+if __name__ == "__main__":
+    root = TreeNode(3)
+    root.left = TreeNode(9)
+    root.right = TreeNode(20)
+    root.right.left = TreeNode(15)
+    root.right.right = TreeNode(7)
+    print Solution().zigzagLevelOrder(root)
