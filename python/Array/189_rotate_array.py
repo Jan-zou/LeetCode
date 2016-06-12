@@ -22,12 +22,16 @@ class Solution(object):
         :rtype: void Do not return anything, modify nums in-place instead.
         """
         k = k % len(nums)  # if k == len(nums), k=0; else k
-        self.reverse(nums, 0, len(nums))
-        self.reverse(nums, 0, k)
-        self.reverse(nums, k, len(nums))
+        self.reverse(nums, 0, len(nums)-1)
+        self.reverse(nums, 0, k-1)
+        self.reverse(nums, k, len(nums)-1)
+        return nums
 
     def reverse(self, nums, start, end):
         while start < end:
-            nums[start], nums[end-1] = nums[end-1], nums[start]
+            nums[start], nums[end] = nums[end], nums[start]
             start += 1
             end -= 1
+
+if __name__ == '__main__':
+    print Solution().rotate([1,2,3,4,5,6,7], 3)

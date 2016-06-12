@@ -7,7 +7,7 @@ Description:
     The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
 
 Tags: Tree, Depth-first Search
-Time: O(n); Space: O(h) h is height of binary tree
+Time: O(n); Space: O(logn) - Recursion
 '''
 
 # Definition for a binary tree node.
