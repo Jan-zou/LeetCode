@@ -60,10 +60,10 @@ class Solution(object):
                 if node.right is None:
                     result.append(cur.val)
                     node.right = cur
+                    prev = cur
                     cur = cur.left
                 else:
                     node.right = None
-                    prev = cur
                     cur = cur.right
         return result
 

@@ -48,13 +48,12 @@ class Solution(object):
         return result
 
     def postorderTraversalMorris(self, root):
-        dump = TreeNode(0)
-        dump.left = root
+        dummy = TreeNode(0)
+        dummy.left = root
 
-        prev, cur = None, dump
+        result, cur = [], dummy
         while cur:
             if cur.left is None:
-                prev = cur
                 cur = cur.right
             else:
                 node = cur.left
@@ -65,10 +64,20 @@ class Solution(object):
                     node.right = cur
                     cur = cur.left
                 else:
-                    self.reversePrint(cur.left, node)
+                    result += self.traceBack(cur.left, node)
+                    # result += self.reversePrint(cur.left, node)
                     node.right = None
-                    prev = cur
                     cur = cur.right
+        return result
+
+    def traceBack(self, fromNode, toNode):
+        result, cur = [], fromNode
+        while cur is not toNode:
+            result.append(cur.val)
+            cur = cur.right
+        result.append(toNode.val)
+        result.reverse()
+        return result
 
     def reverse(self, fromNode, toNode):
         if fromNode == toNode:
@@ -84,16 +93,18 @@ class Solution(object):
                 break
 
     def reversePrint(self, fromNode, toNode):
+        result = []
         self.reverse(fromNode, toNode)
 
         p = toNode
         while True:
-            print p.val
+            result.append(p.val)
             if p == fromNode:
                 break
             p = p.right
 
         self.reverse(toNode, fromNode)
+        return result
 
 
     def postorderTraversalRecursive(self, root):
