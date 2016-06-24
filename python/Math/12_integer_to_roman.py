@@ -15,6 +15,7 @@ Tags: Math, String
 '''
 
 class Solution(object):
+    # Time: O(n); Space: O(1)
     def intToRoman(self, num):
         """
         :type num: int
@@ -37,8 +38,9 @@ class Solution(object):
 
         return RomanStr
 
-    def aintToRoman(self, num):
-        numeral_map = {1: "I", 4: "IV", 5: "V", 9: "IX", 10: "X", 40: "XL", 50: "L", 90: "XC", 100: "C", 400: "CD", 500: "D", 900: "CM", 1000: "M"}
+    def intToRoman2(self, num):
+        numeral_map = {1: "I", 4: "IV", 5: "V", 9: "IX", 10: "X", 40: "XL", 50: "L",
+                       90: "XC", 100: "C", 400: "CD", 500: "D", 900: "CM", 1000: "M"}
         keyset, result = sorted(numeral_map.keys()), ""
 
         while num > 0:
@@ -54,6 +56,3 @@ if __name__ == '__main__':
     print "Roman 37 is %s" % Solution().intToRoman(37)
     print "Roman 100 is %s" % Solution().intToRoman(100)
     print "Roman 2008 is %s" % Solution().intToRoman(2008)
-
-
-

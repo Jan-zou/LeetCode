@@ -10,10 +10,9 @@ Description:
       ["4", "13", "5", "/", "+"] -> (4 + (13 / 5)) -> 6
 
 Tags: Stack
-Time: O(n)
-Space: O(n)
+Time: O(n); Space: O(n)
 '''
-# import operator
+import operator
 
 class Solution(object):
     def evalRPN(self, tokens):
@@ -21,9 +20,10 @@ class Solution(object):
         :type tokens: List[str]
         :rtype: int
         """
-        import operator
         stack = []
-        operator = {"+": operator.add, "-": operator.sub, "*": operator.mul, "/": operator.div}
+        # import operator
+        # operator = {"+": operator.add, "-": operator.sub, "*": operator.mul, "/": operator.div}
+        operator = {"+": self.operator('+'), "-": self.operator('-'), "*": self.operator('*'), "/": self.operator('/')}
         for token in tokens:
             if token not in operator:
                 stack.append(int(token))
@@ -32,8 +32,17 @@ class Solution(object):
                 stack.append(int(operator[token](float(y), x)))
         return stack.pop()
 
+    def operator(self, str):
+        if str == '+':
+            return lambda x, y: x+y
+        elif str == '-':
+            return lambda x, y: x-y
+        elif str == '*':
+            return lambda x, y: x*y
+        elif str == '/':
+            return lambda x, y: x/y
+
 
 if __name__ == '__main__':
     print Solution().evalRPN(["2", "1", "+", "3", "*"])
     print Solution().evalRPN(["4", "13", "5", "/", "+"])
-
