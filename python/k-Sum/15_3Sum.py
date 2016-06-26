@@ -16,9 +16,7 @@ Note:
 
 Tags: Array, Two Pointers
 
-Time: O(n^2)
-Space: O(1)
-
+Time: O(n^2); Space: O(1)
 先排序，然后左右夹逼，跳过重复的数
 '''
 
@@ -28,7 +26,7 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[List[int]]
         """
-        nums = sorted(nums)
+        nums = sorted(nums)    # O(nlogn)
         result = []
         i = 0
 
@@ -50,8 +48,6 @@ class Solution(object):
                             k -= 1
             i += 1
         return result
-
-
 
 
 if __name__ == '__main__':

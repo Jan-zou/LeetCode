@@ -10,16 +10,13 @@ Note:
 + Elements in a quadruplet (a,b,c,d) must be in non-descending order. (ie, a ≤ b ≤ c ≤ d)
 + The solution set must not contain duplicate quadruplets.
 
-  For example, given array S = {1 0 -1 0 -2 2}, and target = 0.
-
+    For example, given array S = {1 0 -1 0 -2 2}, and target = 0.
     A solution set is:
-    (-1,  0, 0, 1)
-    (-2, -1, 1, 2)
-    (-2,  0, 0, 2)
-
+        (-1,  0, 0, 1)
+        (-2, -1, 1, 2)
+        (-2,  0, 0, 2)
 
 Tags: Array, Hash Table, Two Pointers
-
 排序，用字典存储两两为一组的值，简化为2sum，注意去重
 '''
 
@@ -27,7 +24,7 @@ Tags: Array, Hash Table, Two Pointers
 import collections
 
 class Solution(object):
-    # Time: O(n^2~n^4) ; Space: O(n^2)
+    # Time: O(n^2~n^4); Space: O(n^2)
     def fourSum(self, nums, target):
         """
         :type nums: List[int]
@@ -50,18 +47,17 @@ class Solution(object):
                 for x in lookup[i]:
                     for y in lookup[target-i]:
                         [a,b], [c,d] = x, y
-                        if a is not c and b is not d and a is not d and b is not c :
+                        if a is not c and b is not d and a is not d and b is not c:
                             # delete duplicate:
                             #   maybe the same key(a,b==c,d);
                             #   a=d or b=c but only one number in list
                             temp = sorted([nums[a], nums[b], nums[c], nums[d]])
                             if temp not in result:
                                 result.append(temp)
-
         return result
 
 
-    # Time: O(n^3) ; Space: O(1)
+    # Time: O(n^3); Space: O(1)
     def fourSum2(self, nums, target):
         if len(nums) < 4:
             return []
@@ -75,9 +71,10 @@ class Solution(object):
             while b < len(nums)-2:
                 c, d = b+1, len(nums)-1
                 while c < d:
-                    if nums[a] + nums[b] + nums[c] + nums[d] < target:
+                    sum = nums[a] + nums[b] + nums[c] + nums[d]
+                    if sum < target:
                         c += 1
-                    elif nums[a] + nums[b] + nums[c] + nums[d] > target:
+                    elif sum > target:
                         d -= 1
                     else:
                         result.append([nums[a], nums[b], nums[c], nums[d]])
@@ -95,5 +92,3 @@ class Solution(object):
 if __name__ == '__main__':
     print Solution().fourSum([1, 0, -1, 0, -2, 2], 0)
     print Solution().fourSum2([1, 0, -1, 0, -2, 2], 0)
-
-

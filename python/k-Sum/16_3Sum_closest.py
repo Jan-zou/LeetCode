@@ -10,6 +10,7 @@ Description:
     The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
 
 Tags: Array, Two Pointers
+Time: O(n^2); Space: O(1)
 '''
 
 class Solution(object):
@@ -28,10 +29,11 @@ class Solution(object):
             if i == 0 or nums[i] != nums[i-1]:
                 j, k = i+1, len(nums)-1
                 while j < k:
-                    gap = nums[i] + nums[j] + nums[k] - target
+                    sum = nums[i] + nums[j] + nums[k]
+                    gap = sum - target
                     if abs(gap) < min_diff:
                         min_diff = abs(gap)
-                        result = nums[i] + nums[j] + nums[k]
+                        result = sum
                     if gap < 0:
                         j += 1
                     elif gap > 0:
@@ -44,4 +46,3 @@ class Solution(object):
 
 if __name__ == '__main__':
     print Solution().threeSumClosest([-1, 2, 1, -4], 1)
-
