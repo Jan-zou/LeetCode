@@ -6,9 +6,8 @@ Description:
     Implement pow(x, n).   二分法求幂 x^n = x^(n//2) * x^(n//2) * x^(n%2)
 
 Tags: Math, Binary Search
-Time: O(logn)
+O(logn) runtime; O(1) space
 '''
-
 
 class Solution(object):
     def myPow(self, x, n):

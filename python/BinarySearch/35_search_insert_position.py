@@ -13,6 +13,7 @@ Description:
     [1,3,5,6], 0 → 0
 
 Tags: Array, Binary Search
+O(logn) runtime; O(1) space
 '''
 
 class Solution(object):

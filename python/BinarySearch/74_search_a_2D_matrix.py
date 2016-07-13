@@ -5,9 +5,8 @@
 Description:
     Write an efficient algorithm that searches for a value in an m x n matrix.
     This matrix has the following properties:
-
-    + Integers in each row are sorted from left to right.
-    + The first integer of each row is greater than the last integer of the previous row.
+        + Integers in each row are sorted from left to right.
+        + The first integer of each row is greater than the last integer of the previous row.
 
     For example,
         Consider the following matrix:
@@ -19,8 +18,7 @@ Description:
         Given target = 3, return true.
 
 Tags: Array, Binary Search
-Time: O(logn)
-Space: O(1)
+O(logn) runtime; O(1) space
 '''
 
 class Solution(object):
@@ -33,7 +31,7 @@ class Solution(object):
         m, n = len(matrix), len(matrix[0])
         i, j = 0, m*n-1
         while i <= j:
-            mid = (i + j) // 2
+            mid = i + (j - i) // 2
             val = matrix[mid//n][mid%n]
             if target == val:
                 return True

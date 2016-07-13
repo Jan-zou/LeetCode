@@ -17,7 +17,7 @@ Tags: Array, Two Pointers, Binary Search
 
 
 class Solution(object):
-    # Sliding window; Time: O(n); Space: O(1)
+    # Sliding window - O(n) runtime; O(1) space
     def minSubArrayLen(self, s, nums):
         """
         :type s: int
@@ -36,9 +36,10 @@ class Solution(object):
         return min_size if min_size != float('inf') else 0
 
 
-    # Binary Search; Time: O(logn); Space: O(n)
+    # Binary Search - O(logn) runtime; O(n) space
+    # sum_from_start[i]表示nums中[0,i]的和;
+    # 对每个sum_from_start[i], 二分查找右边界, 目标值为sum_from_start[i] - nums[i] + s
     def minSubArrayLen2(self, s, nums):
-
         min_size = float('inf')
         sum_from_start = [n for n in nums]
         for i in xrange(len(sum_from_start) - 1):
@@ -54,7 +55,7 @@ class Solution(object):
 
     def binarySearch(self, compare, nums, start, end, target):
         while start <= end:
-            mid = start + (end - start) / 2
+            mid = start + (end - start) // 2
             if compare(target, nums[mid]):
                 end = mid - 1
             else:

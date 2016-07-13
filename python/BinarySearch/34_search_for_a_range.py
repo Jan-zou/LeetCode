@@ -12,8 +12,7 @@ Description:
     return [3, 4].
 
 Tags: Array, Binary Search
-Time: O(logn)
-Space: O(1)
+O(logn)runtime; O(1) Space
 '''
 
 
@@ -24,10 +23,10 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        left = self.binarySearch(lambda x,y: x <= y, nums, target)
+        left = self.binarySearch(lambda x,y: x <= y, nums, target)  # 找左边界; nums[mid] == target, right=mid, 继续查找左边界
         if left >= len(nums) or nums[left] != target:
             return [-1, -1]
-        right = self.binarySearch(lambda x,y: x < y, nums, target)
+        right = self.binarySearch(lambda x,y: x < y, nums, target)  # 找右边界; nums[mid] == target, left=mid, 继续查找右边界
         return [left, right-1]
 
     def binarySearch(self, compare, nums, target):
