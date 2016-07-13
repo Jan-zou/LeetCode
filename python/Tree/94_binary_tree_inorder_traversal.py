@@ -25,6 +25,7 @@ class TreeNode(object):
         self.right = None
 
 class Solution(object):
+    # O(n) runtime, O(n) space - Stack
     def inorderTraversal(self, root):
         """
         :type root: TreeNode
@@ -44,6 +45,7 @@ class Solution(object):
                 current = current.right
         return result
 
+    # O(n) runtime, O(1) space - Morris
     def inorderTraversalMorris(self, root):
         result = []
         prev, cur = None, root
@@ -52,15 +54,16 @@ class Solution(object):
                 result.append(cur.val)
                 prev = cur
                 cur = cur.right
-            else:    # 建线索（后继）
+            else:
+                # 查找前驱
                 node = cur.left
                 while node.right and node.right != cur:
                     node = node.right
 
-                if node.right is None:
+                if node.right is None:    # 还没线索化，则建立线索
                     node.right = cur
                     cur = cur.left
-                else:
+                else:                     # 已经线索化，则访问节点，并删除线索
                     result.append(cur.val)
                     node.right = None
                     prev = cur

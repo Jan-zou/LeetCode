@@ -25,6 +25,7 @@ class TreeNode(object):
         self.right = None
 
 class Solution(object):
+    # O(n) runtime, O(n) space - Stack
     def postorderTraversal(self, root):
         """
         :type root: TreeNode
@@ -47,26 +48,30 @@ class Solution(object):
                     current = parent.right
         return result
 
+    # O(n) runtime, O(1) space - Morris
     def postorderTraversalMorris(self, root):
         dummy = TreeNode(0)
         dummy.left = root
 
-        result, cur = [], dummy
+        result, cur, prev = [], dummy, None
         while cur:
             if cur.left is None:
+                prev = cur
                 cur = cur.right
             else:
                 node = cur.left
                 while node.right and node.right != cur:
                     node = node.right
 
-                if node.right is None:
+                if node.right is None:    # 还没线索化，则建立线索
                     node.right = cur
+                    prev = cur
                     cur = cur.left
-                else:
+                else:                     # 已经线索化，则访问节点，并删除线索
                     result += self.traceBack(cur.left, node)
                     # result += self.reversePrint(cur.left, node)
                     node.right = None
+                    prev = cur
                     cur = cur.right
         return result
 
@@ -84,13 +89,11 @@ class Solution(object):
             return;
 
         x, y, z = fromNode, fromNode.right, TreeNode(0)
-        while True:
+        while x != toNode:
             z = y.right
             y.right = x
             x = y
             y = z
-            if x == toNode:
-                break
 
     def reversePrint(self, fromNode, toNode):
         result = []

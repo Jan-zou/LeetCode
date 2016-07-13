@@ -25,6 +25,7 @@ class TreeNode(object):
         self.right = None
 
 class Solution(object):
+    # O(n) runtime, O(n) space - Stack
     def preorderTraversal(self, root):
         """
         :type root: TreeNode
@@ -44,25 +45,27 @@ class Solution(object):
                 current = current.right
         return result
 
+    # O(n) runtime, O(1) space - Morris
     def preorderTraversalMorris(self, root):
         result = []
         prev, cur = None, root
         while cur:
             if cur.left is None:
                 result.append(cur.val)
-                prev = cur
+                prev = cur    # cur刚刚被访问过
                 cur = cur.right
-            else:    # 建线索（后继）
+            else:
+                # 查找前驱
                 node = cur.left
                 while node.right and node.right != cur:
                     node = node.right
 
-                if node.right is None:
-                    result.append(cur.val)
+                if node.right is None:    # 还没线索化，则建立线索
+                    result.append(cur.val) 􏴳􏲅􏲂􏰧􏰮􏴴􏴵􏴠􏱰􏳰􏱶􏰜# 仅此行的位置与中序不同
                     node.right = cur
-                    prev = cur
+                    prev = cur            # cur刚刚被访问过
                     cur = cur.left
-                else:
+                else:                     # 已经线索化，则删除线索
                     node.right = None
                     cur = cur.right
         return result
